@@ -9,7 +9,6 @@ colorscheme sebburn
 "set guifont=Consolas:h10 
 
 set ttyfast
-set visualbell
 set encoding=utf-8
 set fileencoding=
 set fileformats=unix,dos,mac
@@ -18,15 +17,19 @@ set spelllang=en_us
 set backspace=indent,eol,start  " allow backspace in insert mode
 set directory=~/tmp/vim,. " swap file location
 set backupdir=~/tmp/vim,. " ~ file location
-"set noswapfile " turn swap files off
+set noswapfile " turn swap files off
 "set nobackup nowb " turn backups off
 set history=100
 set hidden
 
+set visualbell
 set cursorline
 set laststatus=2 " always show status bar
+set showmode
+set showcmd
 set ruler
 set number
+"set relativenumber
 set nowrap
 set linebreak " wrap lines at convenient points
 set list
@@ -45,9 +48,14 @@ set sidescroll=1
 set sidescrolloff=8 " start scrolling N columns away from border
 set scrolloff=4 " start scrolling N lines away from border
 
+" Perl-like (Very magic) regexes
+nnoremap / /\v
+vnoremap / /\v
 set ignorecase smartcase " case sensitivity for search
 set hlsearch incsearch " search on the fly, highlight current match
 set showmatch
+set wildmenu
+set wildmode=list:longest
 
 syntax on " syntax HLing on
 filetype plugin on
@@ -67,6 +75,22 @@ map <C-l> <C-w>l
 " intuitive up and down moves
 nnoremap j gj
 nnoremap k gk
+" disable arrows
+"nnoremap <up> <nop>
+"nnoremap <down> <nop>
+"nnoremap <left> <nop>
+"nnoremap <right> <nop>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
+" strip trailing whites in current file
+nnoremap <leader>W :%s/\s\+$//<cr>
+" copy/paste to the OS clipboard with \c and \v
+nmap <leader>c "+y
+nmap <leader>C "+yy
+nmap <leader>v "+p
+nmap <leader>V "+P
 
 ab sn Sébastien Nicoud
 ab hp Hewlett-Packard
