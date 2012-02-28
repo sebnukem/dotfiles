@@ -53,20 +53,26 @@ nnoremap / /\v
 vnoremap / /\v
 set ignorecase smartcase " case sensitivity for search
 set hlsearch incsearch " search on the fly, highlight current match
-set showmatch
+set showmatch " show matching parens
 set wildmenu
 set wildmode=list:longest
 
 syntax on " syntax HLing on
 filetype plugin on
 filetype indent on
+let mapleader = ","
 
+set guioptions-=T " hide toolbar
+" statusline = [buf] /path/file [+][RO][help][preview][type][unix] 0xFF 1-3, 49 / 99 50%
+set statusline=[%n]\ %F%<\ %m%r%h%w%y[%{&ff}]%=0x%B\ @\ %c%V,\ %l\ /\ %L\ %P
 " ^F1 to toggle menu
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
-set guioptions-=T " hide toolbar
-" Tab to navigate the GUI tabs
-nmap <tab> gt
-nmap <S-tab> gT
+" Space to scroll page
+nmap <space> <C-f>
+nmap <S-space> <C-b>
+" ^Tab to navigate the GUI tabs (as in Firefox)
+nmap <C-tab> gt
+nmap <C-S-tab> gT
 " easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -85,12 +91,11 @@ nnoremap k gk
 "inoremap <left> <nop>
 "inoremap <right> <nop>
 " strip trailing whites in current file
-nnoremap <leader>W :%s/\s\+$//<cr>
-" copy/paste to the OS clipboard with \c and \v
+nmap <leader>w :%s/\s\+$//<cr>
+" copy/paste to the OS clipboard with ,c and ,v
+vmap <C-c> "+y
 nmap <leader>c "+y
-nmap <leader>C "+yy
-nmap <leader>v "+p
-nmap <leader>V "+P
+nmap <leader>v "+gP
 
 ab sn Sébastien Nicoud
 ab hp Hewlett-Packard
