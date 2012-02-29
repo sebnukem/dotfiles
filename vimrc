@@ -7,6 +7,7 @@ call pathogen#helptags()
 colorscheme sebburn
 "set guifont=Courier_New:h9
 "set guifont=Consolas:h10 
+"set gfn=Monospace\ 9
 
 set ttyfast
 set encoding=utf-8
@@ -81,7 +82,7 @@ map <C-l> <C-w>l
 " intuitive up and down moves
 nnoremap j gj
 nnoremap k gk
-" disable arrows
+" disable arrow keys
 "nnoremap <up> <nop>
 "nnoremap <down> <nop>
 "nnoremap <left> <nop>
