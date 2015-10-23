@@ -3,12 +3,15 @@ set nocompatible " Vim > vi, this line must be 1st
 " install pathogen (~/.vim/autoload/pathogen.vim)
 " install vim-airline (~/.vim/bundle/vim-airline)
 " install powerline fonts
+" install vim-fugitive
 
 " Pathogen plugin: loads all plugins in ~/.vim/bundle/
 execute pathogen#infect()
 execute pathogen#helptags()
 
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled=1 " git branch in statusline
+
 set guifont=Inconsolata\ for\ Powerline:h13
 
 "set guifont=Courier_New:h9
@@ -72,7 +75,7 @@ let mapleader = ","
 
 set guioptions-=T " hide toolbar
 " statusline = [buf] /path/file [+][RO][help][preview][type][unix] 0xFF 1-3, 49 / 99 50%
-set statusline=[%n]\ %F%<\ %m%r%h%w%y[%{&ff}]%=0x%B\ @\ %c%V,\ %l\ /\ %L\ %P
+"set statusline=[%n]\ %F%<\ %m%r%h%w%y[%{&ff}]%=0x%B\ @\ %c%V,\ %l\ /\ %L\ %P
 " ^F1 to toggle menu
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 " Space to scroll page
