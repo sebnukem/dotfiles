@@ -1,13 +1,20 @@
 set nocompatible " Vim > vi, this line must be 1st
 
-" Pathogen plugin: loads all plugins in ~/.vim/bundle/
-call pathogen#infect()
-call pathogen#helptags()
+" install pathogen (~/.vim/autoload/pathogen.vim)
+" install vim-airline (~/.vim/bundle/vim-airline)
+" install powerline fonts
 
-colorscheme sebburn
+" Pathogen plugin: loads all plugins in ~/.vim/bundle/
+execute pathogen#infect()
+execute pathogen#helptags()
+
+let g:airline_powerline_fonts = 1
+set guifont=Inconsolata\ for\ Powerline:h13
+
 "set guifont=Courier_New:h9
 "set guifont=Consolas:h10 
 "set gfn=Monospace\ 9
+colorscheme sebburn
 
 set ttyfast
 set encoding=utf-8
@@ -100,3 +107,22 @@ nmap <leader>v "+gP
 
 ab sn Sébastien Nicoud
 ab hp Hewlett-Packard
+
+
+"" this block is a fallback in case of missing powerline fonts
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"  endif
+"" unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
