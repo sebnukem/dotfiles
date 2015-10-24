@@ -9,7 +9,11 @@ set nocompatible " Vim > vi, this line must be 1st
 execute pathogen#infect()
 execute pathogen#helptags()
 
-let g:airline_powerline_fonts = 1
+if has("gui_running")
+	let g:airline_powerline_fonts = 1
+else
+
+endif
 let g:airline#extensions#branch#enabled=1 " git branch in statusline
 
 set guifont=Inconsolata\ for\ Powerline:h13
@@ -18,6 +22,9 @@ set guifont=Inconsolata\ for\ Powerline:h13
 "set guifont=Consolas:h10 
 "set gfn=Monospace\ 9
 colorscheme sebburn
+"colorscheme solarized
+"set background=dark
+"set background=light
 
 set ttyfast
 set encoding=utf-8
@@ -75,7 +82,7 @@ let mapleader = ","
 
 set guioptions-=T " hide toolbar
 " statusline = [buf] /path/file [+][RO][help][preview][type][unix] 0xFF 1-3, 49 / 99 50%
-"set statusline=[%n]\ %F%<\ %m%r%h%w%y[%{&ff}]%=0x%B\ @\ %c%V,\ %l\ /\ %L\ %P
+set statusline=[%n]\ %F%<\ %m%r%h%w%y[%{&ff}]%=0x%B\ @\ %c%V,\ %l\ /\ %L\ %P
 " ^F1 to toggle menu
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 " Space to scroll page
@@ -113,19 +120,20 @@ ab hp Hewlett-Packard
 
 
 "" this block is a fallback in case of missing powerline fonts
-"if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-"  endif
-"" unicode symbols
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.whitespace = 'Ξ'
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+endif
+
