@@ -1,34 +1,32 @@
 set nocompatible " Vim > vi, this line must be 1st
 
-" install pathogen (~/.vim/autoload/pathogen.vim)
-" install vim-airline (~/.vim/bundle/vim-airline)
-" install powerline fonts
-" install vim-fugitive
-
-" Pathogen plugin: loads all plugins in ~/.vim/bundle/
-execute pathogen#infect()
-execute pathogen#helptags()
+" plugins:
+"  Use Vim 8 native pludin system:
+"  Plugins are installed (git clone) in the .vim/pack/seb/start/ folder.
 
 if has("gui_running")
-	let g:airline_powerline_fonts = 1
-else
-
+  let g:airline_powerline_fonts = 1
+"else
 endif
 let g:airline#extensions#branch#enabled=1 " git branch in statusline
 
-set guifont=Inconsolata\ for\ Powerline:h13
-
+set guifont=Inconsolata\ for\ Powerline:h15
 "set guifont=Courier_New:h9
 "set guifont=Consolas:h10 
 "set gfn=Monospace\ 9
+
 colorscheme sebburn
 "colorscheme solarized
 "set background=dark
 "set background=light
+" seoul256 (dark):
+let g:seoul256_background = 235 " Range: 233 (darkest) ~ 239 (lightest)
+"colo seoul
 
 set ttyfast
 set encoding=utf-8
 set fileencoding=
+"set fencs=ucs-bom,utf-16le,utf-8,default,latin1
 set fileformats=unix,dos,mac
 set spelllang=en_us
 "set spell " turn on spell checker
@@ -51,20 +49,22 @@ set number
 set nowrap
 set linebreak " wrap lines at convenient points
 set list
-set listchars=tab:\|\ ,trail:.,eol:◊,extends:►,precedes:◄
+"set listchars=tab:\|\ ,trail:.,eol:░,extends:►,precedes:◄
+set listchars=tab:\|\ ,trail:.,extends:►,precedes:◄,nbsp:␣
+set showbreak=↳\ 
 set splitbelow splitright
 
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set noexpandtab " keep tabs instead of spaces
 set autoindent
 set smartindent
 set smarttab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
 
 set sidescroll=1
 set sidescrolloff=8 " start scrolling N columns away from border
-set scrolloff=4 " start scrolling N lines away from border
+set scrolloff=8 " start scrolling N lines away from border
 
 " Perl-like (Very magic) regexes
 nnoremap / /\v
@@ -78,11 +78,12 @@ set wildmode=list:longest
 syntax on " syntax HLing on
 filetype plugin on
 filetype indent on
-let mapleader = ","
 
 set guioptions-=T " hide toolbar
 " statusline = [buf] /path/file [+][RO][help][preview][type][unix] 0xFF 1-3, 49 / 99 50%
 set statusline=[%n]\ %F%<\ %m%r%h%w%y[%{&ff}]%=0x%B\ @\ %c%V,\ %l\ /\ %L\ %P
+
+let mapleader = ","
 " ^F1 to toggle menu
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
 " Space to scroll page
@@ -115,14 +116,16 @@ vmap <C-c> "+y
 nmap <leader>c "+y
 nmap <leader>v "+gP
 
+" filetype-specific indentation overrides
+autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+autocmd FileType yaml,xml,html,css,javascript setlocal ts=2 sts=2 sw=2 noexpandtab
+
 ab sn Sébastien Nicoud
-ab hp Hewlett-Packard
 
 
-"" this block is a fallback in case of missing powerline fonts
-if !exists('g:airline_symbols')
+" this block is a fallback in case of missing powerline fonts
+if !exists('g:airline_powerline_fonts')
 let g:airline_symbols = {}
-" unicode symbols
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
