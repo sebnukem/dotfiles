@@ -4,12 +4,6 @@ set nocompatible " Vim > vi, this line must be 1st
 "  Use Vim 8 native pludin system:
 "  Plugins are installed (git clone) in the .vim/pack/seb/start/ folder.
 
-if has("gui_running")
-  let g:airline_powerline_fonts = 1
-"else
-endif
-let g:airline#extensions#branch#enabled=1 " git branch in statusline
-
 set guifont=Inconsolata\ for\ Powerline:h15
 "set guifont=Courier_New:h9
 "set guifont=Consolas:h10 
@@ -38,10 +32,17 @@ set noswapfile " turn swap files off
 set history=100
 set hidden
 
+set path+=** " :find command search in subdirs.
+let g:netrw_banner=0 " help banner off
+let g:netrw_browse_split=4 " open in prior window
+let g:netrw_altv=1 " open split to the right
+let g:netrw_liststyle=3 " tree view
+let g:netrw_winsize=30 " open in 30% width view
+
 set visualbell
 set cursorline
 set laststatus=2 " always show status bar
-set showmode
+set noshowmode " turn off mode because airline status already does it
 set showcmd
 set ruler
 set number
@@ -82,10 +83,11 @@ filetype indent on
 set guioptions-=T " hide toolbar
 " statusline = [buf] /path/file [+][RO][help][preview][type][unix] 0xFF 1-3, 49 / 99 50%
 set statusline=[%n]\ %F%<\ %m%r%h%w%y[%{&ff}]%=0x%B\ @\ %c%V,\ %l\ /\ %L\ %P
-
-let mapleader = ","
 " ^F1 to toggle menu
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>
+
+let mapleader = ","
+
 " Space to scroll page
 nmap <space> <C-f>
 nmap <S-space> <C-b>
@@ -115,6 +117,14 @@ nmap <leader>w :%s/\s\+$//<cr>
 vmap <C-c> "+y
 nmap <leader>c "+y
 nmap <leader>v "+gP
+" buffers
+nnoremap <leader>b :ls<cr>:b<space>
+" prevent jump to next instance when pressing * to search for word under
+" cursor
+nnoremap * *<C-o>
+" format json, xml
+nnoremap <leader>fj :%!python -m json.tool<cr>
+nnoremap <leader>fx :%!xmllint --format -<cr>
 
 " filetype-specific indentation overrides
 autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -122,7 +132,18 @@ autocmd FileType yaml,xml,html,css,javascript setlocal ts=2 sts=2 sw=2 noexpandt
 
 ab sn Sébastien Nicoud
 
+" plugins
 
+" NERDTree
+" fix some weird shit with nerdtree printing ^G before each file
+let g:NERDTreeNodeDelimiter = "\u00a0"
+
+" vim-airline
+"if has("gui_running")
+  let g:airline_powerline_fonts = 1
+"endif
+let g:airline#extensions#branch#enabled = 1 " git branch in statusline
+let g:airline#extensions#tabline#enabled = 1 " tabs
 " this block is a fallback in case of missing powerline fonts
 if !exists('g:airline_powerline_fonts')
 let g:airline_symbols = {}
@@ -139,4 +160,9 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 endif
+
+" MRU plugin
+map <leader>f :MRU<CR>
+" location of most recently used file list (mru plugin)
+let MRU_File = '/Users/snicoud/.vim_mru_files'
 
