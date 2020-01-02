@@ -4,10 +4,11 @@ set nocompatible " Vim > vi, this line must be 1st
 "  Use Vim 8 native pludin system:
 "  Plugins are installed (git clone) in the .vim/pack/seb/start/ folder.
 
-set guifont=Inconsolata\ for\ Powerline:h15
+"set guifont=Inconsolata\ for\ Powerline:h15
 "set guifont=Courier_New:h9
 "set guifont=Consolas:h10 
 "set gfn=Monospace\ 9
+set guifont=Menlo:h14
 
 colorscheme sebburn
 "colorscheme solarized
@@ -66,6 +67,10 @@ set smarttab
 set sidescroll=1
 set sidescrolloff=8 " start scrolling N columns away from border
 set scrolloff=8 " start scrolling N lines away from border
+
+" better diff
+set diffopt+=algorithm:patience
+set diffopt+=indent-heuristic
 
 " Perl-like (Very magic) regexes
 nnoremap / /\v
