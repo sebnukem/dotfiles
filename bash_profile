@@ -2,7 +2,6 @@ set -o vi
 
 export FULL_NAME=Sebastien\ Nicoud
 
-
 mkpath() {
 	if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
 		PATH="${PATH:+"$PATH:"}$1"
@@ -13,7 +12,10 @@ mkpath /Users/snicoud/bin
 
 mkpath /usr/local/sbin
 
-export JAVA_HOME=/opt/jdk-11
+# set default java version
+#export JAVA_HOME=/opt/jdk-11
+#export JAVA_HOME=`/usr/libexec/java_home -v 11.0`
+export JAVA_HOME=`/usr/libexec/java_home -v 15.0`
 mkpath $JAVA_HOME/bin
 
 export GROOVY_HOME=/opt/groovy
@@ -21,11 +23,8 @@ mkpath $GROOVY_HOME/bin
 
 #export SCALA_HOME=/opt/scala
 #mkpath $SCALA_HOME/bin
-
 #export M2_HOME=/opt/apache-maven
 #mkpath $M2_HOME/bin
-
-
 
 export NODE_PATH=/usr/local/lib/node_modules
 
@@ -39,7 +38,7 @@ git_branch() {
 }
 pbranch() {
 	br=`git_branch`
-	[ ! -z $br ] && echo -n "⎇ $br"
+	[ ! -z "$br" ] && echo -n "⎇ $br"
 }
 
 #export PS1="\! \u@\H:\w\n> "
@@ -56,4 +55,6 @@ export PS1='`[[ \$? = 0 ]] && echo "\[\e[0;36m\]\$?\[\e[m\]" || echo "\[\e[1;37;
 \n\[\e[1;30m\]>\[\e[m\] '
 
 alias ll='ls -alF'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

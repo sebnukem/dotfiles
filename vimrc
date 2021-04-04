@@ -4,6 +4,9 @@ set nocompatible " Vim > vi, this line must be 1st
 "  Use Vim 8 native pludin system:
 "  Plugins are installed (git clone) in the .vim/pack/seb/start/ folder.
 
+" add path to fzf bin (requires fzf to be installed (brew install fzf)
+set rtp+=/usr/local/opt/fzf
+
 "set guifont=Inconsolata\ for\ Powerline:h15
 "set guifont=Courier_New:h9
 "set guifont=Consolas:h10 
