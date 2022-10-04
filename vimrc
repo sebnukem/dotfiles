@@ -131,7 +131,7 @@ nnoremap <leader>b :ls<cr>:b<space>
 " cursor
 nnoremap * *<C-o>
 " format json, xml
-nnoremap <leader>fj :%!python -m json.tool<cr>
+nnoremap <leader>fj :%!python3 -m json.tool<cr>
 nnoremap <leader>fx :%!xmllint --format -<cr>
 
 " filetype-specific indentation overrides
@@ -173,4 +173,14 @@ endif
 map <leader>f :MRU<CR>
 " location of most recently used file list (mru plugin)
 let MRU_File = '/Users/snicoud/.vim_mru_files'
+
+" ultisnips plugin
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumopBackwardTrigger = '<s-tab>'
+" that folder created manually, it's where the snippets go
+" see https://github.com/honza/vim-snippets/tree/master/UltiSnips for a
+" collection
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/ultisnips-snippets']
+
 
