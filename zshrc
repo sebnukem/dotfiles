@@ -10,7 +10,11 @@ alias ll='ls -alFG'
 
 # this needed by HBase
 # Java home = `/usr/libexec/java_home`
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+export JAVA_HOME=`/usr/libexec/java_home -v 18`
+
+# Groovy, if installed from zip file in /opt/
+export PATH="$PATH:/opt/groovysdk/bin"
 
 # mysql cli commands not symlinked by Brew because MysqlWorkbench is already installed
 export PATH="$PATH:/usr/local/opt/mysql-client/bin"
